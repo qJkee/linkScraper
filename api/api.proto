@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service Crawler{
+    rpc StartCrawl(URLRequest) returns(StatusMessage) {}
+    rpc StopCrawl(URLRequest) returns(StatusMessage) {}
+    rpc CrawlList(Empty) returns(CrawlData) {}
+}
+
+message Empty{}
+
+message StatusMessage {
+    string serverResp = 1;
+}
+
+message URLRequest{
+    string url = 1;
+    int64 parallelism = 2;
+}
+
+message CrawlData{
+    bytes siteTree = 1;
+}
